@@ -10,9 +10,10 @@ public class day03_p2 {
     public static void main(String[] args) throws Exception {
 
         // var lines = MyFileReader.readFile(dir + "sample.txt"); // ans: 3121910778619
-        // var lines = MyFileReader.readFile(dir + "test.txt"); 
-        var lines = MyFileReader.readFile(dir + "d3_input.txt"); // ans: 171899565790379 too low
-                                                                        //  171890471484923
+        var lines = MyFileReader.readFile(dir + "d3_input.txt"); // ans: 171989894144198
+        // 171899565790379 too low
+        // 171890471484923 
+        // 169724073484065
         // lines.stream().forEach(line -> IO.println(line));
 
         IO.println(lines.size());
@@ -20,63 +21,37 @@ public class day03_p2 {
 
         Long sum = 0L;
         int FIXED_SIZE = 12;
-        // int FIXED_SIZE = 5;
 
         for (String line : lines) {
-            List<Long> arr = new ArrayList<>(Arrays.asList());
-
-            var nums = Arrays.asList(line.split("")).stream().map(Long::valueOf).toList();
-
-            
             IO.println(line);
-            nums = nums.reversed();
-            // IO.println(nums);
 
-            nums.forEach(n -> {
-               
-                if(arr.size() < FIXED_SIZE){
-                    arr.addFirst(n);
-                    return;
+            List<Long> nums = new ArrayList<>(Arrays.asList(line.split("")).stream().map(Long::valueOf).toList());
+            List<Long> tmp = new ArrayList<>();
+
+            while (tmp.size() != FIXED_SIZE) {
+                for (int i = 9; i >= 1; i--) {
+                    var target = Long.valueOf(i);
+                    var idxOfTarget = nums.indexOf(target);
+                    if (idxOfTarget == -1) {
+                        continue; // not found
+                    }
+                    var remainLen = nums.size() - idxOfTarget;
+                    boolean canUse = tmp.size() + remainLen >= FIXED_SIZE;
+                    // IO.println(nums + " " + i + " " + canUse);
+                    if (canUse) {
+                        tmp.add(Long.valueOf(target));
+                        nums = nums.subList(idxOfTarget + 1, nums.size());
+                        break;
+                    }
                 }
-
-                // IO.println(n);
-                if(n < arr.getFirst()){
-                    return;
-                }
-
-                // IO.println(arr);
-
-                // pop the smalelr one
-                var smallerIdx = getTheSmallestIdx(arr);
-
-                // IO.println(String.format("Before  remove : %s ", arr));
-                
-                arr.remove(smallerIdx);
-                arr.addFirst(n);
-
-                // 8115119
-                // 9815119
-                // 9811519
-
-                // IO.println(String.format("After  remove  and add : %s ", arr));
-
-            });
-            String valsStr = String.join("", arr.stream().map(String::valueOf).toList());
-            IO.println(valsStr);
-            Long vals = Long.valueOf(valsStr);
-            sum += vals;
-
-            // IO.println(arr);
-
+            }
+            Long val = Long.valueOf(String.join("", tmp.stream().map(String::valueOf).toList()));
+            IO.println(val);
+            sum += val;
         }
 
         IO.println("ans : " + sum);
 
         IO.println();
-    }
-
-    public static int getTheSmallestIdx(List<Long> nums){
-        Long min = nums.stream().min(Long::compare).orElse(null);
-        return nums.indexOf(min);
     }
 }
