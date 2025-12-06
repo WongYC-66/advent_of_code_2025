@@ -7,7 +7,7 @@ public class MyFileReader {
     public static List<String> readFile(String filePath) {
         try {
             Path path = Path.of(filePath);
-            IO.print(path);
+            IO.println(path);
             List<String> lines = Files.readAllLines(path);
             return lines;
         } catch (IOException e) {
