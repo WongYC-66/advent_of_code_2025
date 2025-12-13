@@ -1,9 +1,6 @@
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Deque;
 import java.util.List;
-import java.util.stream.LongStream;
 
 public class day08_p1 {
 
@@ -29,7 +26,7 @@ public class day08_p1 {
             arr.add(splitted);
         }
 
-        Deque<day08_QueueDto> queue = new ArrayDeque<>();
+        // Deque<day08_QueueDto> queue = new ArrayDeque<>();
         List<day08_QueueDto> dtoArr = new ArrayList<>();
 
         // check each pair

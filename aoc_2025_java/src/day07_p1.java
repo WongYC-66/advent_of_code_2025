@@ -3,11 +3,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class day07_p1 {
 
@@ -26,7 +21,7 @@ public class day07_p1 {
         // build 2d grid
         for (String line : lines) {
             // IO.println(line);
-            var splitted = new ArrayList(Arrays.asList(line.split("")));
+            var splitted = new ArrayList<String>(Arrays.asList(line.split("")));
             arr.add(splitted);
         }
 

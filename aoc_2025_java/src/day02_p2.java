@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -54,8 +53,8 @@ public class day02_p2 {
         if (!found) {
             return false;
         }
-        var part1 = matcher.group(1);
-        var part2 = matcher.group(2);
+        // var part1 = matcher.group(1);
+        // var part2 = matcher.group(2);
 
         IO.println("found - " + str);
         // IO.println(part1 + " " + part2);

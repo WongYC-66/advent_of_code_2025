@@ -1,9 +1,6 @@
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Deque;
 import java.util.List;
-import java.util.stream.LongStream;
 
 public class day08_p2 {
 
@@ -45,8 +42,8 @@ public class day08_p2 {
 
         // IO.println(dtoArr);
         dtoArr.forEach(dto -> {
-            var i = dto.i();
-            var j = dto.j();
+            // var i = dto.i();
+            // var j = dto.j();
             // IO.println(String.format("%s , %s , dist = %s", arr.get(i),
             // arr.get(j),dto.dist()));
         });

@@ -13,8 +13,8 @@ public class day10_p2 {
 
     void main() {
 
-        var lines = MyFileReader.readFile(dir + "sample.txt"); // ans: 33
-        // var lines = MyFileReader.readFile(dir + "d10_input.txt"); // ans: ??
+        // var lines = MyFileReader.readFile(dir + "sample.txt"); // ans: 33
+        var lines = MyFileReader.readFile(dir + "d10_input.txt"); // ans: ??
 
         IO.println(lines.size());
         IO.println();
@@ -82,12 +82,16 @@ public class day10_p2 {
             seen.add(hashKey);
 
             // IO.println("----------------------");
-            // IO.println(stateInt + " -> " + step);
+            IO.println(finalState + " , " + stateInt + " -> " + step);
             // IO.println("----------------------");
 
             if (hasEnded(stateInt, finalState)) {
                 IO.println("ended - step = " + step);
                 return step;
+            }
+
+            if (exceedTarget(stateInt, finalState)) {
+                continue;
             }
 
             // explore each options
@@ -113,6 +117,15 @@ public class day10_p2 {
 
     boolean hasEnded(ArrayList<Integer> state, List<Integer> finalState) {
         return finalState.equals(state);
+    }
+
+    boolean exceedTarget(ArrayList<Integer> state, List<Integer> finalState) {
+        for (var i = 0; i < state.size(); i++) {
+            if (state.get(i) > finalState.get(i)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     ArrayList<Integer> deepCopy(ArrayList<Integer> ori) {
